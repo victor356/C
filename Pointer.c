@@ -70,20 +70,20 @@ void cambia(int *px, int *py){
 //per cambiare valore non si può fare call by value ma call by reference, ovvero tramite puntatore
 }
 cambia(&a,&b);
-printf("%d\n",a);
-printf("%d\n",b);
+printf("a=%d\n",a);
+printf("b=%d\n",b);
 printf("\n");
 
 char string[]="prova";
 long lenght(char *array){
     return sizeof(array)/sizeof(array[0]);
 }
-printf("%d\n", lenght(string));
+printf("Lunghezza stringa= %d\n", lenght(string));
 printf("\n");
 
 int intero[]={2,3,5,6};
 long lunghezza(int array[]){
     return sizeof(array)/sizeof(array[0]);
 }
-printf("%d\n", lunghezza(intero));
+printf("numero elementi= %d\n", lunghezza(intero));
 } 
