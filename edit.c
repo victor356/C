@@ -68,4 +68,5 @@ scanf("%c\n",y);
 printf("inserire prima stringa\n");
 scanf("%c\n",x);
 
+printf("hey");
 }
