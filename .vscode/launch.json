@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "CodeLens (Launch) - prova",
+            "request": "launch",
+            "mainClass": "prova",
+            "projectName": "C_8dbcc2e2"
+        },
+        {
             "name": "gcc.exe - Compila ed esegui il debug del file attivo",
             "type": "cppdbg",
             "request": "launch",
