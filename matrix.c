@@ -1,6 +1,10 @@
 #include <stdio.h>
-int main()
+#include "edit.c"
+void main(void)
 {
+
+
+
   int m, n, p, q, c, d, k, sum = 0;
   int first[10][10], second[10][10], multiply[10][10];
  
@@ -46,5 +50,4 @@ int main()
     }
   }
  
-  return 0;
 }

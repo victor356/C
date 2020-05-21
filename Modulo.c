@@ -3,7 +3,7 @@
 void main(void){
 int x=0;
 printf("inserire numero\n");
-gets(x);
+scanf("%d", &x);
 
 if(x<0){
 int y=-x;
