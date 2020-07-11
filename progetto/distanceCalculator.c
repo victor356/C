@@ -93,14 +93,14 @@ int main(){
      FILE* fptr;
 //read f1
  char input1[100000];
-    fptr = fopen("C:\\Users\\Vittorio\\Documents\\GitHub\\C\\progetto\\input1.txt","r");
+    fptr = fopen("C:\\Users\\vitto\\Documents\\GitHub\\C\\progetto\\input1.txt","r");
    fscanf(fptr,"%[^\n]s",input1);
     printf("1st read= %s\n", input1);
     fclose(fptr); 
 
 //read f2
  char input2[100000];
-    fptr = fopen("C:\\Users\\Vittorio\\Documents\\GitHub\\C\\progetto\\input2.txt","r");
+    fptr = fopen("C:\\Users\\vitto\\Documents\\GitHub\\C\\progetto\\input2.txt","r");
    fscanf(fptr,"%[^\n]s",input2);
     printf("2nd read= %s\n", input2);
     fclose(fptr); 
@@ -109,14 +109,14 @@ int main(){
     clock_t t; 
     t = clock(); 
   
- //calculate distance and time needed
+ //calculate number of operations and time needed
     int result=Levenshtein_distance(input1,input2);
     t = clock() - t; 
     double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
     printf("la distanza tra le due stringhe: %d\n",result);
     printf("To calculate the distance between those 2 strings took %f seconds\n", time_taken); 
 //write result
-   fptr = fopen("C:\\Users\\Vittorio\\Documents\\GitHub\\C\\progetto\\output.txt","w"); 
+   fptr = fopen("C:\\Users\\vitto\\Documents\\GitHub\\C\\progetto\\output.txt","w"); 
    printf("Written string: %d\n",result);
    
     fprintf(fptr,"%d",result);
@@ -126,20 +126,20 @@ int main(){
 
 
 
-//trasformare da f1 a f2
-int difference[100000];
-for(int i=0; i<max(strlen(input1),strlen(input2)); i++){
+// //trasformare da f1 a f2
+// int difference[100000];
+// for(int i=0; i<max(strlen(input1),strlen(input2)); i++){
    
-difference[i]=input1[i]-input2[i];
+// difference[i]=input1[i]-input2[i];
 
-   }
-    //scrivere il risultato generatore
-fptr = fopen("C:\\Users\\Vittorio\\Documents\\GitHub\\C\\progetto\\modifiche.txt","w"); 
-   printf("Procedure to follow: %d\n",difference);
-   for(int i=0;i<(sizeof(difference)/sizeof(difference[0]));i++){
-    fprintf(fptr,"%d",difference[i]);
-   }
-    fclose(fptr);
+//    }
+//     //scrivere il risultato generatore
+// fptr = fopen("C:\\Users\\Vittorio\\Documents\\GitHub\\C\\progetto\\modifiche.txt","w"); 
+//    printf("Procedure to follow: %d\n",difference);
+//    for(int i=0;i<(sizeof(difference)/sizeof(difference[0]));i++){
+//     fprintf(fptr,"%d",difference[i]);
+//    }
+//     fclose(fptr);
 
 
 

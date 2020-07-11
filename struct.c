@@ -5,20 +5,21 @@ struct Point{
     };
      
    /*in questo modo per istanziare la struttura Point devo
-   scrivere ogni volta struct */
+   scrivere ogni volta 'struct Point' */
 
    typedef struct Pippo{
         int x;
         char aa;
     }Parrucchiere;
+
   Parrucchiere a1,a2;
     Parrucchiere a1={4,'a'};
   /*con typedef è come se nell'instanziamento di una struttura 
-  sintetizzassi "struct Point" con "parrucchiere" (è + veloce)*/
+  sintetizzassi "struct Pippo" con "parrucchiere" (è + veloce)*/
     
     typedef struct lista Alias; //dichiarazione struct con alias
 
-    struct lista{
+    struct lista{   //istanziazione postuma della lista con alias
         int z;
         Parrucchiere prova; //struct annidata= struct dentro una struct, prova ne è puntatore
     };
