@@ -5,6 +5,7 @@
 #include <time.h>
 #define buffSize 10000
 #include "filedistance.h"
+
 //funziona
 
 // typedef struct add
@@ -38,12 +39,6 @@
 //         exportRecursive(root.)
 //     }
 // }
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#define buffSize 10000
 
 // int add(char *str, unsigned int n, int b)
 // {
@@ -120,7 +115,7 @@ int main()
         exit(1);
     }
     long input1_size = ftell(fptr);
-    char *input1 = malloc(input1_size);
+    char *input1 = malloc(input1_size) + 1;
 
     fscanf(fptr, "%[^\t]s", input1);
     printf("1st read= %s\n", input1);
@@ -135,43 +130,53 @@ int main()
     }
     long input2_size = ftell(fptr);
     char *input2 = malloc(input2_size);
+
     fscanf(fptr, "%[^\t]s", input2);
     printf("2nd read= %s\n", input2);
     fclose(fptr);
 
     //trasformare da f1 a f2
-    int size = max(input2_size,input1_size);
-    file diff[size];
+    int size = max(input2_size, input1_size);
+   struct file diff[size];
+       printf("type %d %d %c", diff[1].type, diff[1].n, diff[1].byte);
+
     for (int i = 0; i < size; i++) //scrittura delle differenze carattere per carattere
     {
         if (input1[i] == NULL && input2[i] != NULL)
         {
-            diff[i].type = ADD;
+            diff[i].type = 0;
             diff[i].n = i;
             diff[i].byte = input2[i];
         }
         else if (input2[i] == NULL && input1[i] != NULL)
         {
-            diff[i].type = DEL;
+            diff[i].type = 1;
             diff[i].n = i;
             diff[i].byte = NULL;
         }
         else if (input2[i] != input1[i])
         {
-            diff[i].type = SET;
+            diff[i].type = 2;
             diff[i].n = i;
-            diff[i].byte = NULL;
+            diff[i].byte = input2[i];
         }
     }
+    diff[0].type = 2;
+    diff[0].n = 0;
+    diff[0].byte = 'a';
     //scrivere il risultato generatore su file
     fptr = fopen("difference.bin", "wb");
     for (int i = size - 1; i >= 0; i--)
     {
-        fwrite(&diff + i, sizeof(file) * size, 1, fptr);
+        fwrite(&diff[i], sizeof(file), 1, fptr);
         printf("ciao");
     }
     printf("\n 1");
 
     fclose(fptr);
+    free(input1);
+    free(input2);
+
+    printf("type %d %d %c", diff[1].type, diff[1].n, diff[1].byte);
 }
 //come controllare che il file binario sia scritto correttamente
