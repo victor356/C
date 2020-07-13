@@ -5,6 +5,7 @@
 #include <time.h>
 #define buffSize 10000
 #include "filedistance.h"
+//funziona
 
 // typedef struct add
 // {
@@ -38,36 +39,108 @@
 //     }
 // }
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#define buffSize 10000
+
+// int add(char *str, unsigned int n, int b)
+// {
+//     str[n] += b;
+// }
+
+// int del(char *str, int n)
+// {
+//     str[n] = NULL;
+// }
+// int set(char *str, unsigned int n, int b)
+// {
+//     str[n] = b;
+// }
+
+int minimum(int a, int b, int c)
+{
+
+    /* funzione che calcola il minimo di 3 valori */
+
+    int min = a;
+
+    if (b < min)
+        min = b;
+    if (c < min)
+        min = c;
+
+    return min;
+}
+
+int max(int a, int b)
+{
+    int max;
+    if (a > b)
+        max = a;
+    else
+    {
+        max = b;
+    }
+    return max;
+}
+typedef enum type
+{
+    ADD,
+    DEL,
+    SET
+} type;
+typedef struct
+{
+    int type;
+    unsigned int n;
+    char byte;
+
+} file;
+
+typedef struct fileInput fileInput;
+
+typedef struct fileInput
+{
+    char c;
+    fileInput *file;
+
+} fileInput;
+
 int main()
 {
     FILE *fptr;
     //read f1
-    char *input1 = malloc(buffSize);
     int i = 0;
-    fptr = fopen("C:\\Users\\vitto\\Documents\\GitHub\\C\\progetto\\input1.txt", "r");
+    fptr = fopen("input1.txt", "r");
     if (fptr == 0)
     {
         fprintf(stderr, "Error while opening");
         exit(1);
     }
+    long input1_size = ftell(fptr);
+    char *input1 = malloc(input1_size);
+
     fscanf(fptr, "%[^\t]s", input1);
     printf("1st read= %s\n", input1);
     fclose(fptr);
 
     //read f2
-    char *input2 = malloc(buffSize);
-    fptr = fopen("C:\\Users\\vitto\\Documents\\GitHub\\C\\progetto\\input2.txt", "r");
+    fptr = fopen("input2.txt", "r");
     if (fptr == 0)
     {
         fprintf(stderr, "Error while opening");
         exit(1);
     }
+    long input2_size = ftell(fptr);
+    char *input2 = malloc(input2_size);
     fscanf(fptr, "%[^\t]s", input2);
     printf("2nd read= %s\n", input2);
     fclose(fptr);
 
     //trasformare da f1 a f2
-    int size = max(strlen(input1), strlen(input2));
+    int size = max(input2_size,input1_size);
     file diff[size];
     for (int i = 0; i < size; i++) //scrittura delle differenze carattere per carattere
     {
@@ -101,3 +174,4 @@ int main()
 
     fclose(fptr);
 }
+//come controllare che il file binario sia scritto correttamente

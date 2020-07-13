@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+//funziona
 int shouldAdd(int a, int b){
 
 
@@ -93,14 +93,14 @@ int main(){
      FILE* fptr;
 //read f1
  char input1[100000];
-    fptr = fopen("C:\\Users\\vitto\\Documents\\GitHub\\C\\progetto\\input1.txt","r");
+    fptr = fopen("input1.txt","r");
    fscanf(fptr,"%[^\n]s",input1);
     printf("1st read= %s\n", input1);
     fclose(fptr); 
 
 //read f2
  char input2[100000];
-    fptr = fopen("C:\\Users\\vitto\\Documents\\GitHub\\C\\progetto\\input2.txt","r");
+    fptr = fopen("input2.txt","r");
    fscanf(fptr,"%[^\n]s",input2);
     printf("2nd read= %s\n", input2);
     fclose(fptr); 
@@ -116,7 +116,7 @@ int main(){
     printf("la distanza tra le due stringhe: %d\n",result);
     printf("To calculate the distance between those 2 strings took %f seconds\n", time_taken); 
 //write result
-   fptr = fopen("C:\\Users\\vitto\\Documents\\GitHub\\C\\progetto\\output.txt","w"); 
+   fptr = fopen("output.txt","w"); 
    printf("Written string: %d\n",result);
    
     fprintf(fptr,"%d",result);
