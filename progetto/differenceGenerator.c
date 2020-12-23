@@ -6,54 +6,6 @@
 #define buffSize 10000
 #include "filedistance.h"
 
-//funziona
-
-// typedef struct add
-// {
-//     unsigned int n;
-//     unsigned int byte;
-// } addNb;
-
-// typedef struct edit
-// {
-//     unsigned int n;
-//     unsigned int byte;
-// } setNb;
-
-// typedef struct del
-// {
-//     unsigned int n;
-// } delN;
-
-// void export(file *root)
-// {
-//     FILE *fptr;
-//     fptr = fopen("C:\\Users\\Vittorio\\Documents\\GitHub\\C\\progetto\\modifiche.bin", "wb");
-//     exportRecursive(fptr,root);
-//     fclose(fptr);
-// }
-// void exportRecursive(FILE* fptr, file root)
-// {
-//     if(root!=NULL)
-//     {
-//         exportRecursive(root.)
-//     }
-// }
-
-// int add(char *str, unsigned int n, int b)
-// {
-//     str[n] += b;
-// }
-
-// int del(char *str, int n)
-// {
-//     str[n] = NULL;
-// }
-// int set(char *str, unsigned int n, int b)
-// {
-//     str[n] = b;
-// }
-
 int minimum(int a, int b, int c)
 {
 
@@ -84,7 +36,8 @@ typedef enum type
 {
     ADD,
     DEL,
-    SET
+    SET,
+    NONE
 } type;
 typedef struct
 {
@@ -137,22 +90,25 @@ int main()
 
     //trasformare da f1 a f2
     int size = max(input2_size, input1_size);
-   struct file diff[size];
-       printf("type %d %d %c", diff[1].type, diff[1].n, diff[1].byte);
+    file diff[size];
+    diff[0].type = 2;
+    diff[0].n = 0;
+    diff[0].byte = 'a';
+    printf("type %d %d %c \n", diff[0].type, diff[0].n, diff[0].byte);
 
     for (int i = 0; i < size; i++) //scrittura delle differenze carattere per carattere
     {
-        if (input1[i] == NULL && input2[i] != NULL)
+        if (!input1[i] && input2[i])
         {
             diff[i].type = 0;
             diff[i].n = i;
             diff[i].byte = input2[i];
         }
-        else if (input2[i] == NULL && input1[i] != NULL)
+        else if (!input2[i] && input1[i])
         {
             diff[i].type = 1;
             diff[i].n = i;
-            diff[i].byte = NULL;
+            diff[i].byte = 0;
         }
         else if (input2[i] != input1[i])
         {
@@ -160,10 +116,10 @@ int main()
             diff[i].n = i;
             diff[i].byte = input2[i];
         }
+        diff[i].type = i;
+        diff[i].n = 0;
+        diff[i].byte = 'z';
     }
-    diff[0].type = 2;
-    diff[0].n = 0;
-    diff[0].byte = 'a';
     //scrivere il risultato generatore su file
     fptr = fopen("difference.bin", "wb");
     for (int i = size - 1; i >= 0; i--)
@@ -171,12 +127,11 @@ int main()
         fwrite(&diff[i], sizeof(file), 1, fptr);
         printf("ciao");
     }
-    printf("\n 1");
 
     fclose(fptr);
     free(input1);
     free(input2);
 
-    printf("type %d %d %c", diff[1].type, diff[1].n, diff[1].byte);
+    printf("type %d %d %c", diff[2].type, diff[2].n, diff[2].byte);
 }
 //come controllare che il file binario sia scritto correttamente
